@@ -18,11 +18,11 @@ import project.project_new.model.BiddingUser;
 public class BiddingUserController {
 
     @Resource
-    BiddingUserRepository ticketUserRepo;
+    BiddingUserRepository biddingUserRepo;
 
     @RequestMapping(value = {"", "list"}, method = RequestMethod.GET)
     public String list(ModelMap model) {
-        model.addAttribute("ticketUsers", ticketUserRepo.findAll());
+        model.addAttribute("biddingUsers",biddingUserRepo.findAll());
         return "listUser";
     }
 
@@ -69,13 +69,13 @@ public class BiddingUserController {
                 form.getPassword(),
                 form.getRoles()
         );
-        ticketUserRepo.save(user);
+        biddingUserRepo.save(user);
         return new RedirectView("/user/list", true);
     }
 
     @RequestMapping(value = "delete/{username}", method = RequestMethod.GET)
-    public View deleteTicket(@PathVariable("username") String username) {
-        ticketUserRepo.delete(ticketUserRepo.findOne(username));
+    public View deleteBidding(@PathVariable("username") String username) {
+        biddingUserRepo.delete(biddingUserRepo.findOne(username));
         return new RedirectView("/user/list", true);
     }
 

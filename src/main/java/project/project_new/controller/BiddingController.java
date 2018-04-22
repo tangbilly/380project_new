@@ -94,7 +94,7 @@ public class BiddingController {
     }
 
     @RequestMapping(
-            value = "/{ticketId}/attachment/{attachment:.+}",
+            value = "/{biddingId}/attachment/{attachment:.+}",
             method = RequestMethod.GET
     )
     public View download(@PathVariable("biddingId") long biddingId,
@@ -109,7 +109,8 @@ public class BiddingController {
     }
 
     @RequestMapping(value = "delete/{biddingId}", method = RequestMethod.GET)
-    public String deleteTicket(@PathVariable("biddingId") long biddingId)
+    public String deleteBidding
+        (@PathVariable("biddingId") long biddingId)
             throws BiddingItemNotFound {
         biddingService.delete(biddingId);
         return "redirect:/bidding/list";

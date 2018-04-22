@@ -15,6 +15,8 @@ public class AttachmentServiceImpl implements AttachmentService {
     @Override
     @Transactional
     public Attachment getAttachment(long biddingId, String name) {
-        return attachmentRepo.findByTicketIdAndName(biddingId, name);
+        return attachmentRepo.findByBiddingIdAndName(biddingId, name);
     }
 }
+
+

@@ -21,6 +21,6 @@ public interface BiddingService {
 
     public void delete(long id) throws BiddingItemNotFound;
 
-    public void deleteAttachment(long ticketId, String name)
+    public void deleteAttachment(long biddingId, String name)
             throws AttachmentNotFound;
 }

@@ -5,5 +5,5 @@ import project.project_new.model.Attachment;
 
 public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
 
-    public Attachment findByTicketIdAndName(long ticketId, String name);
+    public Attachment findByBiddingIdAndName(long biddingId, String name);
 }
