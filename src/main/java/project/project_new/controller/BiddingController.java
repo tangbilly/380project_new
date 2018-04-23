@@ -49,6 +49,15 @@ public class BiddingController {
         private String itemsubject;
         private String body;
         private List<MultipartFile> attachments;
+        private String price;
+
+        public String getPrice() {
+            return price;
+        }
+
+        public void setPrice(String price) {
+            this.price = price;
+        }
 
         public String getItemsubject() {
             return itemsubject;
@@ -74,12 +83,14 @@ public class BiddingController {
             this.attachments = attachments;
         }
 
+        
+
     }
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
         long biddingId = biddingService.createBidding(principal.getName(),
-                form.getItemsubject(), form.getBody(), form.getAttachments());
+                form.getItemsubject(), form.getBody(), form.getAttachments(),form.getPrice());
         return "redirect:/bidding/view/" + biddingId;
     }
 
@@ -131,6 +142,7 @@ public class BiddingController {
 
         Form biddingForm = new Form();
         biddingForm.setItemsubject(bidding.getItemsubject());
+        biddingForm.setPrice(bidding.getPrice());
         biddingForm.setBody(bidding.getBody());
         modelAndView.addObject("biddingForm", biddingForm);
 

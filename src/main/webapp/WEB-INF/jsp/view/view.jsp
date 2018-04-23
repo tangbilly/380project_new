@@ -19,7 +19,8 @@
         </security:authorize>
         <br /><br />
         <i>Customer Name - <c:out value="${bidding.customerName}" /></i><br /><br />
-        <c:out value="${bidding.body}" /><br /><br />
+        Description: <c:out value="${bidding.body}" /><br /><br />
+        Price: $<c:out value="${bidding.price}" /><br /><br />
         <c:if test="${fn:length(bidding.attachments) > 0}">
             Attachments:
             <c:forEach items="${bidding.attachments}" var="attachment"

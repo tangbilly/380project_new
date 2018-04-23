@@ -61,11 +61,12 @@ public class BiddingServiceImpl implements BiddingService {
     @Override
     @Transactional
     public long createBidding(String ownerName, String itemsubject,
-            String body, List<MultipartFile> attachments) throws IOException {
+            String body, List<MultipartFile> attachments,String price) throws IOException {
         Bidding bidding = new Bidding();
         bidding.setCustomerName(ownerName);
         bidding.setItemsubject(itemsubject);
         bidding.setBody(body);
+        bidding.setPrice(price);
 
         for (MultipartFile filePart : attachments) {
             Attachment attachment = new Attachment();

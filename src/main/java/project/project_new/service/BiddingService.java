@@ -9,7 +9,7 @@ import project.project_new.model.Bidding;
 public interface BiddingService {
 
     public long createBidding(String customerName, String subject,
-            String body, List<MultipartFile> attachments) throws IOException;
+            String body, List<MultipartFile> attachments, String price) throws IOException;
 
     public List<Bidding> getBidding();
 

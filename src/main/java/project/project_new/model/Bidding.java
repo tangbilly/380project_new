@@ -28,7 +28,7 @@ public class Bidding implements Serializable {
     
     private String status;
     
-    private int  price;
+    private String price;
     
     private int numbid;
 
@@ -60,8 +60,6 @@ public class Bidding implements Serializable {
         this.itemsubject = itemsubject;
     }
 
-   
-
     public String getBody() {
         return body;
     }
@@ -77,15 +75,15 @@ public class Bidding implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    public int getPrice() {
+
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
-    
+     
     public int getNumbid() {
         return numbid;
     }
