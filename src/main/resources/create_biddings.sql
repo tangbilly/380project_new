@@ -1,8 +1,11 @@
 CREATE TABLE bidding (
     id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    ownername VARCHAR(255) NOT NULL,
+    customername VARCHAR(255) NOT NULL,
     itemsubject VARCHAR(255) NOT NULL,
     body VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    price INTEGER,
+    numbid INTEGER,
     PRIMARY KEY (id)
 );
 
