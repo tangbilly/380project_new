@@ -211,7 +211,7 @@ public class BiddingController {
     public View bid(@PathVariable("biddingId") long biddingId, Form form ){
         Bidding bidding = biddingService.getBidding(biddingId);
 
-        biddingService.updateNumBidAndPrice(biddingId, form.getNumbid(),
+        biddingService.updateNumBidAndPrice(biddingId, bidding.getNumbid(),
                 form.getPrice());
         return new RedirectView("/bidding/view/" + biddingId, true);
     }
