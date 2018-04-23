@@ -25,9 +25,9 @@
             <form:label path="password">Password</form:label><br/>
             <form:errors path="password" cssClass="error" />
             <form:input type="text" path="password" /><br/><br/>
-            <form:label path="confirm_password">Confirm Password</form:label><br/>
+            <%--<form:label path="confirm_password">Confirm Password</form:label>
             <form:errors path="confirm_password" cssClass="error" />
-            <form:input type="text" path="confirm_password" /><br/><br/>
+            <form:input type="text" path="confirm_password" /><br/><br/><br/>--%>
             <form:label path="roles">Roles</form:label><br/>
             <form:errors path="roles" cssClass="error" />
             <form:checkbox path="roles" value="ROLE_USER" />ROLE_USER
