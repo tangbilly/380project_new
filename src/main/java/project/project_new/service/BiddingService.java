@@ -14,7 +14,8 @@ public interface BiddingService {
     public List<Bidding> getBidding();
 
     public Bidding getBidding(long id);
-
+    
+    public void updateNumBidAndPrice(long id,int numbid , String price);
     public void updateBidding(long id, String subject,
             String body, List<MultipartFile> attachments)
             throws IOException, BiddingItemNotFound;

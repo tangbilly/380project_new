@@ -30,6 +30,7 @@
                     <c:out value="${attachment.name}" /></a>
             </c:forEach><br /><br />
         </c:if>
+        <a href="<c:url value="/bidding/bid/${bidding.id}" />">Bid the item</a>
         <a href="<c:url value="/bidding/list" />">Return to bidding list.</a>
     </body>
 </html>

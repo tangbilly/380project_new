@@ -111,5 +111,14 @@ public class BiddingServiceImpl implements BiddingService {
         }
         biddingRepo.save(updatedBidding);
     }
+    
+    @Override
+    @Transactional(rollbackFor = BiddingItemNotFound.class)
+    public void updateNumBidAndPrice(long id, int numbid , String price){
+      Bidding updatedBidding = biddingRepo.findOne(id);
+      updatedBidding.setNumbid(numbid+1);
+      updatedBidding.setPrice(price);
+      biddingRepo.save(updatedBidding);
+    }
 
 }

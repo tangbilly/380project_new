@@ -43,6 +43,10 @@ public class BiddingController {
     public ModelAndView create() {
         return new ModelAndView("add", "biddingForm", new Form());
     }
+    @RequestMapping(value = "bid", method = RequestMethod.GET)
+    public ModelAndView bid() {
+        return new ModelAndView("bid", "biddingForm", new Form());
+    }
 
     public static class Form {
 
@@ -50,6 +54,7 @@ public class BiddingController {
         private String body;
         private List<MultipartFile> attachments;
         private String price;
+        private int numbid;
 
         public String getPrice() {
             return price;
@@ -83,6 +88,14 @@ public class BiddingController {
             this.attachments = attachments;
         }
 
+    public int getNumbid() {
+      return numbid;
+    }
+
+    public void setNumbid(int numbid) {
+      this.numbid = numbid;
+    }
+        
         
 
     }
@@ -175,4 +188,32 @@ public class BiddingController {
         return "redirect:/bidding/edit/" + biddingId;
     }
 
+    
+
+    
+    @RequestMapping(value = "bid/{biddingId}", method = RequestMethod.GET)
+    public ModelAndView bid(@PathVariable("biddingId") long biddingId
+       ) {
+        Bidding bidding = biddingService.getBidding(biddingId);
+        
+        ModelAndView modelAndView = new ModelAndView("bid");
+        modelAndView.addObject("bidding", bidding);
+
+        Form biddingForm = new Form();
+        biddingForm.setPrice(bidding.getPrice());
+        biddingForm.setNumbid(bidding.getNumbid());
+        modelAndView.addObject("biddingForm", biddingForm);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "bid/{biddingId}", method = RequestMethod.POST)
+    public View bid(@PathVariable("biddingId") long biddingId, Form form ){
+        Bidding bidding = biddingService.getBidding(biddingId);
+
+        biddingService.updateNumBidAndPrice(biddingId, form.getNumbid(),
+                form.getPrice());
+        return new RedirectView("/bidding/view/" + biddingId, true);
+    }
+    
 }
