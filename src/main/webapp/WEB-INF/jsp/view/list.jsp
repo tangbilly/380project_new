@@ -24,7 +24,7 @@
                 <c:forEach items="${biddingDatabase}" var="bidding">
                     Bidding ${bidding.id}:
                     <a href="<c:url value="/bidding/view/${bidding.id}" />">
-                        <c:out value="${bidding.subject}" /></a>
+                        <c:out value="${bidding.itemsubject}" /></a>
                     (customer: <c:out value="${bidding.customerName}" />)
                     <security:authorize access="hasRole('ADMIN') or 
                                         principal.username=='${bidding.customerName}'">

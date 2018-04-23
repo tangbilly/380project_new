@@ -19,10 +19,10 @@ public class Bidding implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
+    @Column(name = "customername")
     private String customerName;
 
-    private String subject;
+    private String itemsubject;
 
     private String body;
     
@@ -52,13 +52,15 @@ public class Bidding implements Serializable {
         this.customerName = customerName;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getItemsubject() {
+        return itemsubject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setItemsubject(String itemsubject) {
+        this.itemsubject = itemsubject;
     }
+
+   
 
     public String getBody() {
         return body;

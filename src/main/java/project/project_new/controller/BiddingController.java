@@ -22,6 +22,7 @@ import project.project_new.service.AttachmentService;
 import project.project_new.service.BiddingService;
 import project.project_new.view.DownloadingView;
 
+
 @Controller
 @RequestMapping("bidding")
 public class BiddingController {
@@ -45,16 +46,16 @@ public class BiddingController {
 
     public static class Form {
 
-        private String subject;
+        private String itemsubject;
         private String body;
         private List<MultipartFile> attachments;
 
-        public String getSubject() {
-            return subject;
+        public String getItemsubject() {
+            return itemsubject;
         }
 
-        public void setSubject(String subject) {
-            this.subject = subject;
+        public void setItemsubject(String itemsubject) {
+            this.itemsubject = itemsubject;
         }
 
         public String getBody() {
@@ -78,7 +79,7 @@ public class BiddingController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
         long biddingId = biddingService.createBidding(principal.getName(),
-                form.getSubject(), form.getBody(), form.getAttachments());
+                form.getItemsubject(), form.getBody(), form.getAttachments());
         return "redirect:/bidding/view/" + biddingId;
     }
 
@@ -109,8 +110,7 @@ public class BiddingController {
     }
 
     @RequestMapping(value = "delete/{biddingId}", method = RequestMethod.GET)
-    public String deleteBidding
-        (@PathVariable("biddingId") long biddingId)
+    public String deleteBidding(@PathVariable("biddingId") long biddingId)
             throws BiddingItemNotFound {
         biddingService.delete(biddingId);
         return "redirect:/bidding/list";
@@ -130,7 +130,7 @@ public class BiddingController {
         modelAndView.addObject("bidding", bidding);
 
         Form biddingForm = new Form();
-        biddingForm.setSubject(bidding.getSubject());
+        biddingForm.setItemsubject(bidding.getItemsubject());
         biddingForm.setBody(bidding.getBody());
         modelAndView.addObject("biddingForm", biddingForm);
 
@@ -148,7 +148,7 @@ public class BiddingController {
             return new RedirectView("/bidding/list", true);
         }
 
-        biddingService.updateBidding(biddingId, form.getSubject(),
+        biddingService.updateBidding(biddingId, form.getItemsubject(),
                 form.getBody(), form.getAttachments());
         return new RedirectView("/bidding/view/" + biddingId, true);
     }

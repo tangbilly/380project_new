@@ -6,6 +6,7 @@ CREATE TABLE bidding (
     status VARCHAR(255) DEFAULT 'Available' ,
     price INTEGER,
     numbid INTEGER,
+    winner VARCHAR(255),
     PRIMARY KEY (id)
 );
 

@@ -13,8 +13,8 @@
 
         <h2>Create a bidding Item</h2>
         <form:form method="POST" enctype="multipart/form-data" modelAttribute="biddingForm">
-            <form:label path="subject">Item Subject</form:label><br/>
-            <form:input type="text" path="subject" /><br/><br/>
+            <form:label path="itemsubject">Item Subject</form:label><br/>
+            <form:input type="text" path="itemsubject" /><br/><br/>
             <form:label path="body">Item content</form:label><br/>
             <form:textarea path="body" rows="5" cols="30" /><br/><br/>
             <form:label path="body">Item price</form:label><br/>

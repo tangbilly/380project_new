@@ -64,7 +64,7 @@ public class BiddingServiceImpl implements BiddingService {
             String body, List<MultipartFile> attachments) throws IOException {
         Bidding bidding = new Bidding();
         bidding.setCustomerName(ownerName);
-        bidding.setSubject(itemsubject);
+        bidding.setItemsubject(itemsubject);
         bidding.setBody(body);
 
         for (MultipartFile filePart : attachments) {
@@ -93,7 +93,7 @@ public class BiddingServiceImpl implements BiddingService {
             throw new BiddingItemNotFound();
         }
 
-        updatedBidding.setSubject(subject);
+        updatedBidding.setItemsubject(subject);
         updatedBidding.setBody(body);
 
         for (MultipartFile filePart : attachments) {

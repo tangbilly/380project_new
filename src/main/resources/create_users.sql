@@ -12,3 +12,7 @@ CREATE TABLE user_roles (
     FOREIGN KEY (username) REFERENCES biddingusers(username)
 );
 
+
+INSERT INTO biddingusers VALUES ('edthin', 'edthinpw');
+INSERT INTO user_roles(username, role) VALUES ('edthin', 'ROLE_USER');
+INSERT INTO user_roles(username, role) VALUES ('edthin', 'ROLE_ADMIN');

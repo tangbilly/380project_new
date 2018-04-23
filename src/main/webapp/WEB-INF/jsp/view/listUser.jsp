@@ -7,7 +7,7 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 <br /><br />
-<a href="<c:url value="/bidding" />">Return to list biddings</a>
+<a href="<c:url value="/bidding" />">Return to the bidding list</a>
 <h2>Users</h2>
 <a href="<c:url value="/user/create" />">Create a User</a><br /><br />
 <c:choose>
