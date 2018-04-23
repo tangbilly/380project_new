@@ -25,6 +25,12 @@ public class Bidding implements Serializable {
     private String subject;
 
     private String body;
+    
+    private String status;
+    
+    private int  price;
+    
+    private int numbid;
 
     @OneToMany(mappedBy = "bidding", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,6 +68,30 @@ public class Bidding implements Serializable {
         this.body = body;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    
+    public int getNumbid() {
+        return numbid;
+    }
+
+    public void setNumbid(int numbid) {
+        this.numbid = numbid;
+    }
+    
     public List<Attachment> getAttachments() {
         return attachments;
     }

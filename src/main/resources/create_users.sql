@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE biddingusers (
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
     PRIMARY KEY (username)
@@ -9,6 +9,6 @@ CREATE TABLE user_roles (
     username VARCHAR(50) NOT NULL,
     role VARCHAR(50) NOT NULL,
     PRIMARY KEY (user_role_id),
-    FOREIGN KEY (username) REFERENCES users(username)
+    FOREIGN KEY (username) REFERENCES biddingusers(username)
 );
 

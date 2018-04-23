@@ -3,7 +3,7 @@ CREATE TABLE bidding (
     customername VARCHAR(255) NOT NULL,
     itemsubject VARCHAR(255) NOT NULL,
     body VARCHAR(255) NOT NULL,
-    status VARCHAR(255) NOT NULL,
+    status VARCHAR(255) DEFAULT 'Available' ,
     price INTEGER,
     numbid INTEGER,
     PRIMARY KEY (id)

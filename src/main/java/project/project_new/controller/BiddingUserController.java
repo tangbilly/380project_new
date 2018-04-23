@@ -31,7 +31,7 @@ public class BiddingUserController {
 
     @RequestMapping(value = {"", "list"}, method = RequestMethod.GET)
     public String list(ModelMap model) {
-        model.addAttribute("biddingUsers",biddingUserRepo.findAll());
+        model.addAttribute("Users",biddingUserRepo.findAll());
         return "listUser";
     }
 
