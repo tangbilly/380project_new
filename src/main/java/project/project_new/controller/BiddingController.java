@@ -43,11 +43,18 @@ public class BiddingController {
     public ModelAndView create() {
         return new ModelAndView("add", "biddingForm", new Form());
     }
+    
     @RequestMapping(value = "bid", method = RequestMethod.GET)
     public ModelAndView bid() {
         return new ModelAndView("bid", "biddingForm", new Form());
     }
-
+        
+   @RequestMapping(value = "comment", method = RequestMethod.GET)
+    public ModelAndView comment() {
+        return new ModelAndView("comment", "biddingForm", new Form());
+    }
+    
+    
     public static class Form {
 
         private String itemsubject;
@@ -55,7 +62,8 @@ public class BiddingController {
         private List<MultipartFile> attachments;
         private String price;
         private int numbid;
-
+        private String comment; 
+        
         public String getPrice() {
             return price;
         }
@@ -95,6 +103,14 @@ public class BiddingController {
     public void setNumbid(int numbid) {
       this.numbid = numbid;
     }
+
+        public String getComment() {
+            return comment;
+        }
+
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
         
         
 
@@ -103,7 +119,8 @@ public class BiddingController {
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public String create(Form form, Principal principal) throws IOException {
         long biddingId = biddingService.createBidding(principal.getName(),
-                form.getItemsubject(), form.getBody(), form.getAttachments(),form.getPrice());
+                form.getItemsubject(), form.getBody(), form.getAttachments(),form.getPrice(),form.getComment());
+        
         return "redirect:/bidding/view/" + biddingId;
     }
 
@@ -208,12 +225,36 @@ public class BiddingController {
     }
 
     @RequestMapping(value = "bid/{biddingId}", method = RequestMethod.POST)
-    public View bid(@PathVariable("biddingId") long biddingId, Form form ){
+    public View bid(@PathVariable("biddingId") long biddingId, Form form , Principal principal ){
         Bidding bidding = biddingService.getBidding(biddingId);
 
-        biddingService.updateNumBidAndPrice(biddingId, bidding.getNumbid(),
-                form.getPrice());
+        biddingService.updateNumBidAndPrice(biddingId, bidding.getNumbid(),form.getPrice());
+        biddingService.updateWinner(biddingId, principal.getName());
         return new RedirectView("/bidding/view/" + biddingId, true);
     }
     
+  
+      @RequestMapping(value = "comment/{biddingId}", method = RequestMethod.GET)
+        public ModelAndView comment(@PathVariable("biddingId") long biddingId) {
+        Bidding bidding = biddingService.getBidding(biddingId);
+        ModelAndView modelAndView = new ModelAndView("comment");
+        modelAndView.addObject("bidding", bidding);
+        Form biddingForm = new Form();
+        modelAndView.addObject("biddingForm", biddingForm);
+        return modelAndView;
+    }
+    @RequestMapping(value = "comment/{biddingId}", method = RequestMethod.POST)
+    public View comment(@PathVariable("biddingId") long biddingId, Form form){
+       
+       biddingService.addComment(biddingId, form.getComment());
+        
+        return new RedirectView("/bidding/view/" + biddingId, true);
+    }
+    
+        @RequestMapping(value = "view/{biddingId}", method = RequestMethod.POST)
+    public View endBid(@PathVariable("biddingId") long biddingId, Form form,Principal principal){
+    Bidding bidding = biddingService.getBidding(biddingId);
+    biddingService.changeStatus(biddingId);
+        return new RedirectView("/bidding/view/" + biddingId, true);
+    }
 }

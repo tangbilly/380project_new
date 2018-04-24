@@ -7,6 +7,7 @@ CREATE TABLE bidding (
     price INTEGER,
     numbid INTEGER DEFAULT 0,
     winner VARCHAR(255),
+    comment VARCHAR(255) DEFAULT '',
     PRIMARY KEY (id)
 );
 

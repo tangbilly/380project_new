@@ -1,5 +1,6 @@
 package project.project_new.service;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 import project.project_new.exception.AttachmentNotFound;
@@ -9,7 +10,7 @@ import project.project_new.model.Bidding;
 public interface BiddingService {
 
     public long createBidding(String customerName, String subject,
-            String body, List<MultipartFile> attachments, String price) throws IOException;
+            String body, List<MultipartFile> attachments, String price, String comment) throws IOException;
 
     public List<Bidding> getBidding();
 
@@ -24,4 +25,12 @@ public interface BiddingService {
 
     public void deleteAttachment(long biddingId, String name)
             throws AttachmentNotFound;
+
+    public void addComment(long id, String msg)throws NullPointerException;
+    
+    
+    public void changeStatus(long id);
+ 
+    
+    public void updateWinner(long id, String customerName);
 }

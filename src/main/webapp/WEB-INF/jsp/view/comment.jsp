@@ -10,10 +10,10 @@
       <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     </form>
 
-    <form:form method="POST">   
-      <form:label path="body">Item content</form:label><br/>
-      <form:textarea path="body" rows="5" cols="30" /><br/><br/>
-
+    <form:form method="POST" enctype="multipart/form-data" modelAttribute="biddingForm">
+        
+      <form:label path="comment">Comment</form:label><br/>
+      <form:textarea path="comment" rows="5" cols="30" /><br/><br/>
       <input type="submit" value="Submit"/>
     </form:form>
   </body>

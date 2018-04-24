@@ -21,6 +21,16 @@
         <i>Customer Name - <c:out value="${bidding.customerName}" /></i><br /><br />
         Description: <c:out value="${bidding.body}" /><br /><br />
         Price: $<c:out value="${bidding.price}" /><br /><br />
+        Comment: <c:out value="${bidding.comment}" /><br /><br />
+        No. of bid: <c:out value="${bidding.numbid}" /><br /><br />
+        Status: <c:out value="${bidding.status}" /><br /><br />
+        Winner: <c:out value="${bidding.winner}" /><br /><br />
+        
+        <security:authorize access="hasRole('ADMIN') or principal.username=='${bidding.customerName}'"> 
+        <form:form method="POST" enctype="multipart/form-data" modelAttribute="biddingForm">
+        <input type="submit" value="End bid"/>
+        </form:form>
+        </security:authorize>
         <c:if test="${fn:length(bidding.attachments) > 0}">
             Attachments:
             <c:forEach items="${bidding.attachments}" var="attachment"
@@ -30,6 +40,7 @@
                     <c:out value="${attachment.name}" /></a>
             </c:forEach><br /><br />
         </c:if>
+        <a href="<c:url value="/bidding/comment/${bidding.id}" />">Leave a comment</a>
         <a href="<c:url value="/bidding/bid/${bidding.id}" />">Bid the item</a>
         <a href="<c:url value="/bidding/list" />">Return to bidding list.</a>
     </body>

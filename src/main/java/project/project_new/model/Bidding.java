@@ -31,7 +31,11 @@ public class Bidding implements Serializable {
     private String price;
     
     private int numbid;
+    
+    private String winner;
 
+    String comment;
+    
     @OneToMany(mappedBy = "bidding", fetch = FetchType.EAGER,
             cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Attachment> attachments = new ArrayList<>();
@@ -104,4 +108,23 @@ public class Bidding implements Serializable {
         attachment.setBidding(null);
         this.attachments.remove(attachment);
     }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getWinner() {
+        return winner;
+    }
+
+    public void setWinner(String winner) {
+        this.winner = winner;
+    }
+    
+    
+    
 }

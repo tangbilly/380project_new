@@ -19,6 +19,11 @@
             <form:textarea path="body" rows="5" cols="30" /><br/><br/>
             <form:label path="price">Item price</form:label><br/>
             <form:input type="number" path="price" /><br/><br/>
+
+            
+            <form:label path="comment">Comment</form:label><br/>
+            <form:textarea path="comment" rows="5" cols="30" /><br/><br/>
+            
             <b>Attachments</b><br/>
             <input type="file" name="attachments" multiple="multiple"/><br/><br/>
             <input type="submit" value="Submit"/>

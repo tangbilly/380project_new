@@ -1,6 +1,7 @@
 package project.project_new.service;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -61,12 +62,14 @@ public class BiddingServiceImpl implements BiddingService {
     @Override
     @Transactional
     public long createBidding(String ownerName, String itemsubject,
-            String body, List<MultipartFile> attachments,String price) throws IOException {
+            String body, List<MultipartFile> attachments,String price, String comment) throws IOException {
         Bidding bidding = new Bidding();
         bidding.setCustomerName(ownerName);
         bidding.setItemsubject(itemsubject);
         bidding.setBody(body);
         bidding.setPrice(price);
+        bidding.setComment(comment);
+        bidding.setStatus("Available");
 
         for (MultipartFile filePart : attachments) {
             Attachment attachment = new Attachment();
@@ -121,4 +124,60 @@ public class BiddingServiceImpl implements BiddingService {
       biddingRepo.save(updatedBidding);
     }
 
+    
+    @Override
+    @Transactional(rollbackFor = BiddingItemNotFound.class)
+    public void addComment(long id, String msg){
+      Bidding updateBidding = biddingRepo.findOne(id);
+      updateBidding.setComment(updateBidding.getComment()+", "+msg);
+      biddingRepo.save(updateBidding);} 
+    
+        @Override
+    @Transactional(rollbackFor = BiddingItemNotFound.class)
+       public void changeStatus(long id){
+       Bidding updateBidding = biddingRepo.findOne(id);
+       updateBidding.setStatus("Ended");
+       biddingRepo.save(updateBidding);}
+       
+       @Override
+        @Transactional(rollbackFor = BiddingItemNotFound.class)
+        public void updateWinner(long id, String customerName){
+       Bidding updateBidding = biddingRepo.findOne(id);
+       updateBidding.setWinner(customerName);
+       biddingRepo.save(updateBidding);
+            
+            
+            
+       }
+       
+       
+       
+       
+       
+       
 }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+        
+
